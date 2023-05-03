@@ -1,0 +1,1 @@
+document.getElementById("header"),document.getElementById("content"),document.getElementById("footer"),document.getElementById("sidebar");
