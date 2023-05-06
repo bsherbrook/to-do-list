@@ -68,6 +68,25 @@ body {
           align-items: center;
         }
       }
+      #noteBox {
+        opacity: 0%;
+        position: absolute;
+        left: 200px;
+        top: 170px;
+        display: flex;
+        padding: 10px;
+        background-color: aqua;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+
+        #noteForm {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+      }
     }
   }
   #footer {
