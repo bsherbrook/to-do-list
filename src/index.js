@@ -1,6 +1,6 @@
 import './style.scss';
 import {sidebarDisplay} from './menuButton';
-import { addProj, addNote, submitNote, getNotepad} from './addProject';
+import { addProj, addNote, submitNote, submitProject} from './addProject';
 
 const header=document.getElementById('header')
 const contentBody= document.getElementById('content');
@@ -17,4 +17,4 @@ menuButton.addEventListener('click', sidebarDisplay);
 addProject.addEventListener('click', addProj);
 addNoteButton.addEventListener('click', addNote);
 submitNoteButton.addEventListener('click', submitNote);
-//submitProject.addEventListener('click', submitProject);
+submitProjectButton.addEventListener('click', submitProject);
