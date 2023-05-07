@@ -2,6 +2,7 @@ const formBox= document.getElementById('formBox');
 const noteBox= document.getElementById('noteBox');
 let addProjSwitch= true;
 let addNoteSwitch=true;
+//Project form appears
 export function addProj(){
     if (addNoteSwitch===false){addNote()}
     if (addProjSwitch=== true){
@@ -14,6 +15,7 @@ export function addProj(){
         addProjSwitch=true;
     }
 }
+//Note form appears
 export function addNote(){
     if(addProjSwitch===false){addProj()}
     if (addNoteSwitch===true){
@@ -24,5 +26,27 @@ export function addNote(){
     else{
         noteBox.style.opacity='0';
         addNoteSwitch=true;
+        document.getElementById('noteTitle').value= '';
+        document.getElementById('noteDescription').value='';
     }
+}
+//collect Note data
+let myNotepad=[]
+export function getNotepad(){
+    console.log(myNotepad);
+    return {myNotepad}
+}
+export function submitNote(event){
+    let noteTitle= document.getElementById('noteTitle').value;
+    let noteDescription= document.getElementById('noteDescription').value;
+    function noteData(noteTitle, noteDescription){
+        this.title= noteTitle;
+        this.description= noteDescription;
+    }
+    myNotepad.push(
+        new noteData(noteTitle, noteDescription)
+    )
+    event.preventDefault();
+    addNote();
+    console.log(myNotepad);
 }
