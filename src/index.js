@@ -1,7 +1,7 @@
 import './style.scss';
 import {sidebarDisplay} from './menuButton';
 import { addProj, addNote, submitNote, submitProject} from './addProject';
-
+import { displayMyProject } from './displayProjects';
 const header=document.getElementById('header')
 const contentBody= document.getElementById('content');
 const contentCard= document.getElementById('content-card');
@@ -18,3 +18,4 @@ addProject.addEventListener('click', addProj);
 addNoteButton.addEventListener('click', addNote);
 submitNoteButton.addEventListener('click', submitNote);
 submitProjectButton.addEventListener('click', submitProject);
+submitProjectButton.addEventListener('click', displayMyProject);

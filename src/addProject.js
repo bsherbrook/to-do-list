@@ -38,12 +38,9 @@ export function addNote() {
     document.getElementById("noteDescription").value = "";
   }
 }
-//collect Note data
+//collect Note data-- must require before array push
 let myNotepad = [];
-export function getNotepad() {
-  console.log(myNotepad);
-  return { myNotepad };
-}
+export {myNotepad};
 export function submitNote(event) {
   let noteTitle = document.getElementById("noteTitle").value;
   let noteDescription = document.getElementById("noteDescription").value;
@@ -56,12 +53,10 @@ export function submitNote(event) {
   addNote();
   console.log(myNotepad);
 }
-//collect Project Data
+//collect Project Data--must require certain info
 let myProjects = [];
-export function getProjects() {
-  console.log(myProjects);
-  return { myProjects };
-}
+export {myProjects}
+
 export function submitProject(event) {
   let projectTitle = document.getElementById("projectTitle").value;
   let projectDescription = document.getElementById("projectDescription").value;

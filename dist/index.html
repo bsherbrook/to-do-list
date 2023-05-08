@@ -52,8 +52,11 @@
                 <label for="dueDate">Due Date</label>
                 <input name="dueDate" id="dueDate" type="date" />
               </div>
-              <button id="submitProject">Submit</button>
             </form>
+            <div id="buttonFormBox">
+              <input type="button" value="Submit" id="submitProject">
+              <button id="cancel">X</button>
+            </div>
           </div>
           <div id="noteBox">
             <form action="#" method="#" id="noteForm">
@@ -72,11 +75,12 @@
                 cols="50"
                 rows="5"
               ></textarea>
-              <input type="button" value="Submit" id="submitNote">
             </form>
+            <div id="buttonFormBox">
+              <input type="button" value="Submit" id="submitNote">
+              <button id="cancel">X</button>
+            </div>
           </div>
-          <h3 id="noteTitle">General</h3>
-          <p id="noteContent">testing</p>
         </div>
       </div>
     </div>
