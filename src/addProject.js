@@ -9,12 +9,13 @@ export function addProj() {
   }
   if (addProjSwitch === true) {
     formBox.style.transition = "opacity .6s ease-in";
+    formBox.style.display='flex'; 
     formBox.style.opacity = "100%";
     formBox.style.zIndex = "1";
     addProjSwitch = false;
   } else {
     formBox.style.opacity = "0";
-    formBox.style.zIndex = "0";
+    formBox.style.zIndex = "-1";
     addProjSwitch = true;
     document.getElementById("projectTitle").value = "";
     document.getElementById("projectDescription").value = "";
@@ -30,9 +31,11 @@ export function addNote() {
   if (addNoteSwitch === true) {
     noteBox.style.transition = "opacity .6s ease-in";
     noteBox.style.opacity = "100%";
+    noteBox.style.zIndex='1';
     addNoteSwitch = false;
   } else {
     noteBox.style.opacity = "0";
+    noteBox.style.zIndex='-1';
     addNoteSwitch = true;
     document.getElementById("noteTitle").value = "";
     document.getElementById("noteDescription").value = "";
@@ -85,3 +88,5 @@ export function submitProject(event) {
   addProj();
   console.log(myProjects);
 }
+//create an array to store all of the newly created arrays in
+// const arrayHolder=[[{title:etc.},{another to do item}],[another project of todo objects]]

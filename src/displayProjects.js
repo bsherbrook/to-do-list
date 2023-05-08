@@ -1,7 +1,6 @@
 import { myProjects } from "./addProject";
 
 export function displayMyProject(){
-    console.log('test');
     let x = myProjects.length-1;
     const content= document.getElementById('content');
     const toDoProj = document.createElement("div");

@@ -37,14 +37,30 @@ body {
       background-color: aquamarine;
     }
     #content-card {
+      box-sizing: border-box;
+      position: relative;
+      background-color:antiquewhite;
       display: flex;
+      flex-direction: column;
       grid-column: 2/3;
       padding: 8px;
+      
+      #content-card-buttons{
+        display:flex;
+        justify-content: flex-end;
+        padding: 5px;
+        align-items: center;
+        column-gap: 10px;
+        #addToDoItem{
+          font-size: 25px;
+          border-radius: 15px;  
+        }
+      }  
     }
     #content {
       box-sizing: border-box;
       padding: 5px;
-      background-color: antiquewhite;
+      background-color:rgb(255, 249, 242);
       width: 100%;
       height: 100%;
       position: relative;
@@ -76,12 +92,14 @@ body {
         justify-content: center;
         align-items: center;
         padding: 10px;
+        z-index: -1;
 
         #modalForm {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          z-index: -1;
         }
       }
       #noteBox {
@@ -96,7 +114,7 @@ body {
         justify-content: center;
         align-items: center;
         padding: 10px;
-
+        z-index: -1;
         #noteForm {
           display: flex;
           flex-direction: column;

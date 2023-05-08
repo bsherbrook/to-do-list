@@ -12,9 +12,11 @@ const addProject= document.getElementById('addProjectButton');
 const addNoteButton= document.getElementById('addNoteButton');
 const submitProjectButton= document.getElementById('submitProject');
 const submitNoteButton= document.getElementById('submitNote');
+const newToDo= document.getElementById('addToDoItem');
 
 menuButton.addEventListener('click', sidebarDisplay);
 addProject.addEventListener('click', addProj);
+newToDo.addEventListener('click', addProj)
 addNoteButton.addEventListener('click', addNote);
 submitNoteButton.addEventListener('click', submitNote);
 submitProjectButton.addEventListener('click', submitProject);
