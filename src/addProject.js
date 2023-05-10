@@ -57,7 +57,7 @@ export function submitNote(event) {
   console.log(myNotepad);
 }
 //collect Project Data--must require certain info
-let myProjects = [];
+let myProjects = []; //this array stores all objects
 export { myProjects };
 
 export function submitProject(event) {
@@ -69,19 +69,22 @@ export function submitProject(event) {
     projectTitle,
     projectDescription,
     projectDueDate,
-    projectPriority
+    projectPriority,
+    currentFolderName //must distinguish further between notes and Projects?
   ) {
     this.title = projectTitle;
     this.description = projectDescription;
     this.date = projectDueDate;
     this.priority = projectPriority;
+    this.folder = currentFolderName;
   }
   myProjects.push(
     new projectData(
       projectTitle,
       projectDescription,
       projectDueDate,
-      projectPriority
+      projectPriority,
+      currentFolderName
     )
   );
   event.preventDefault();
@@ -95,8 +98,9 @@ export function buildNewFolder() {
   if (newFolderBox) {
     return;
   }
-  const addProjectButton = document.getElementById("addProjectButton");
+  //build modal to name project
   const li = document.createElement("li");
+  li.setAttribute("id", "newFolderLI");
   const div = document.createElement("div");
   div.setAttribute("id", "newFolderBox");
   const input = document.createElement("input");
@@ -112,27 +116,24 @@ export function buildNewFolder() {
   const deleteButton = document.createElement("button");
   deleteButton.setAttribute("id", "deleteFolderButton");
   deleteButton.textContent = "X";
-
-  // append the elements to the correct parents
-  const projectList = document.getElementById("projectList");
+// append the elements to the correct parents
   li.appendChild(div);
   div.appendChild(input);
   div.appendChild(buttonContainer);
   buttonContainer.appendChild(addButton);
   buttonContainer.appendChild(deleteButton);
+  const projectList = document.getElementById("projectList");
   projectList.insertBefore(
     li,
     projectList.children[projectList.children.length - 1]
-  );  
+  );
 }
-
 // create new Note Folders from the sidebar
 export function buildNoteFolder() {
   const newNoteBox = document.getElementById("newFolderBox");
   if (newNoteBox) {
     return;
   }
-  const addNoteButton = document.getElementById("addNoteButton");
   const li = document.createElement("li");
   const div = document.createElement("div");
   div.setAttribute("id", "newFolderBox");
@@ -149,7 +150,6 @@ export function buildNoteFolder() {
   const deleteButton = document.createElement("button");
   deleteButton.setAttribute("id", "deleteFolderButton");
   deleteButton.textContent = "X";
-
   // append the elements to the correct parents
   const noteList = document.getElementById("noteList");
   li.appendChild(div);
@@ -159,5 +159,51 @@ export function buildNoteFolder() {
   buttonContainer.appendChild(deleteButton);
   noteList.insertBefore(li, noteList.children[noteList.children.length - 1]);
 }
-//create an array to store all of the newly created arrays in
-// const arrayHolder=[[{title:etc.},{another to do item}],[another project of todo objects]]
+//add event listener to document checking if Add button is pressed on modal
+export function checkforButton(e) {
+  const targetFolder = e.target.closest("#addFolderButton");
+  const newFolderInput = document.getElementById("newFolder");
+  const targetCancel = e.target.closest("#deleteFolderButton");
+  if (targetFolder && newFolderInput.value !== "") {
+    //build new folder on sidebar
+    let projectName = newFolderInput.value;
+    const liElement = document.createElement("li");
+    const spanElement = document.createElement("span");
+    const newFolderLI = document.getElementById("newFolderLI");
+    spanElement.classList.add("projectFolder");
+    //add listener to change currentfolder by clicking sidebar element
+    spanElement.addEventListener("click", () => {
+      const folderName = document.getElementById("currentFolderName");
+      folderName.innerText = `${spanElement.innerText}`;
+      currentFolderName = folderName.innerText;
+      console.log(currentFolderName);
+    });
+    spanElement.textContent = projectName;
+    liElement.appendChild(spanElement);
+    const projectList = document.getElementById("projectList");
+    newFolderLI.remove();
+    projectList.insertBefore(
+      liElement,
+      projectList.children[projectList.children.length - 1]
+    );
+    //currentFolderName should it be editable?
+    //update current folder display and currentfolderName variable?
+    //or wait for to click the new folder from sidebar
+  }
+  if (targetCancel){
+    newFolderLI.remove();
+  }
+}
+let currentFolderName = "General"; //this variable is what imprints on objects
+//eventlistener for default starting list item 'General'
+//what if someone names two folders the same?
+const projectList = document.querySelectorAll(".projectFolder");
+const folderName = document.getElementById("currentFolderName");
+projectList.forEach((item) => {
+  item.addEventListener("click", (event) => {
+    folderName.innerText = `${item.innerHTML}`;
+    currentFolderName = folderName.innerText;
+    console.log(currentFolderName)
+    //currentFolderName should it be editable?
+  });
+});
