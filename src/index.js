@@ -29,3 +29,19 @@ addNoteButton.addEventListener('click', buildNoteFolder)
 submitNoteButton.addEventListener("click", submitNote);
 submitProjectButton.addEventListener("click", submitProject);
 submitProjectButton.addEventListener("click", displayMyProject);
+document.addEventListener('click', checkforButton)
+
+let projectName= '';
+function checkforButton(e){
+  const targetFolder = e.target.closest("#addFolderButton"); // Or any other selector.
+  const newFolderInput= document.getElementById('newFolder');
+  const targetCancel= e.target.closest('#deleteFolderButton');
+  // works for projects and notes
+  if(targetFolder && newFolderInput.value!==''){
+    projectName=newFolderInput.value;
+    console.log(projectName); 
+  }
+  if(targetCancel){
+    console.log('cancel')
+  }
+};

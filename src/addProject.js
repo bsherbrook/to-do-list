@@ -88,6 +88,8 @@ export function submitProject(event) {
   addProj();
   console.log(myProjects);
 }
+
+// create new project folders from the sidebar
 export function buildNewFolder() {
   const newFolderBox = document.getElementById("newFolderBox");
   if (newFolderBox) {
@@ -121,8 +123,10 @@ export function buildNewFolder() {
   projectList.insertBefore(
     li,
     projectList.children[projectList.children.length - 1]
-  );
+  );  
 }
+
+// create new Note Folders from the sidebar
 export function buildNoteFolder() {
   const newNoteBox = document.getElementById("newFolderBox");
   if (newNoteBox) {
