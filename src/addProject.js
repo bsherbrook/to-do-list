@@ -1,3 +1,4 @@
+import { organizeProjectFolder } from "./displayProjects";
 const formBox = document.getElementById("formBox");
 const noteBox = document.getElementById("noteBox");
 let addProjSwitch = true;
@@ -176,7 +177,7 @@ export function checkforButton(e) {
       const folderName = document.getElementById("currentFolderName");
       folderName.innerText = `${spanElement.innerText}`;
       currentFolderName = folderName.innerText;
-      console.log(currentFolderName);
+      organizeProjectFolder();
     });
     spanElement.textContent = projectName;
     liElement.appendChild(spanElement);
@@ -186,7 +187,7 @@ export function checkforButton(e) {
       liElement,
       projectList.children[projectList.children.length - 1]
     );
-    //currentFolderName should it be editable?
+    //currentFolderName should it be editable on to-do's?
     //update current folder display and currentfolderName variable?
     //or wait for to click the new folder from sidebar
   }
@@ -195,15 +196,4 @@ export function checkforButton(e) {
   }
 }
 let currentFolderName = "General"; //this variable is what imprints on objects
-//eventlistener for default starting list item 'General'
-//what if someone names two folders the same?
-const projectList = document.querySelectorAll(".projectFolder");
-const folderName = document.getElementById("currentFolderName");
-projectList.forEach((item) => {
-  item.addEventListener("click", (event) => {
-    folderName.innerText = `${item.innerHTML}`;
-    currentFolderName = folderName.innerText;
-    console.log(currentFolderName)
-    //currentFolderName should it be editable?
-  });
-});
+export{ currentFolderName }
