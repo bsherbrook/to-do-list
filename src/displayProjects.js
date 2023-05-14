@@ -54,7 +54,6 @@ export function displayMyProject(){
 export function organizeProjectFolder(){
     const contentBody= document.getElementById('contentBody');
     contentBody.innerText='';
-    const generalFolder= document.getElementById('generalFolder');
     for (let i=0; i<myProjects.length; i++){
       if(myProjects[i].folder===currentFolderName){  
             const content= document.getElementById('contentBody');
