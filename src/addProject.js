@@ -1,4 +1,11 @@
-import { organizeProjectFolder } from "./displayProjects";
+import {
+  editDetailsSwitch,
+  organizeProjectFolder,
+  targetToDo,
+  displayGeneral,
+  displayMyProject,
+  tempfolder
+} from "./displayProjects";
 const formBox = document.getElementById("formBox");
 const noteBox = document.getElementById("noteBox");
 let addProjSwitch = true;
@@ -55,7 +62,6 @@ export function submitNote(event) {
   myNotepad.push(new noteData(noteTitle, noteDescription));
   event.preventDefault();
   addNote();
-  console.log(myNotepad);
 }
 //collect Project Data--must require certain info
 let myProjects = []; //this array stores all objects
@@ -79,18 +85,40 @@ export function submitProject(event) {
     this.priority = projectPriority;
     this.folder = currentFolderName;
   }
-  myProjects.push(
-    new projectData(
+  if (editDetailsSwitch=== false) {
+    myProjects.push(
+      new projectData(
+        projectTitle,
+        projectDescription,
+        projectDueDate,
+        projectPriority,
+        currentFolderName
+      )
+    );
+    event.preventDefault();
+    addProj();
+    displayMyProject();
+  }
+  // if editing a toDo's details
+  if (editDetailsSwitch === true) {
+    myProjects[targetToDo] = new projectData(
       projectTitle,
       projectDescription,
       projectDueDate,
       projectPriority,
-      currentFolderName
-    )
-  );
-  event.preventDefault();
-  addProj();
-  console.log(myProjects);
+      tempfolder
+    );
+    const content = document.getElementById("contentBody");
+    content.innerText = "";
+    event.preventDefault();
+    if (currentFolderName === "General") {
+      displayGeneral();
+    } else {
+      organizeProjectFolder();
+    }
+    editDetailsSwitch = false;
+    addProj();
+  }
 }
 
 // create new project folders from the sidebar
@@ -117,7 +145,7 @@ export function buildNewFolder() {
   const deleteButton = document.createElement("button");
   deleteButton.setAttribute("id", "deleteFolderButton");
   deleteButton.textContent = "X";
-// append the elements to the correct parents
+  // append the elements to the correct parents
   li.appendChild(div);
   div.appendChild(input);
   div.appendChild(buttonContainer);
@@ -191,9 +219,9 @@ export function checkforButton(e) {
     //update current folder display and currentfolderName variable?
     //or wait for to click the new folder from sidebar
   }
-  if (targetCancel){
+  if (targetCancel) {
     newFolderLI.remove();
   }
 }
 let currentFolderName = "General"; //this variable is what imprints on objects
-export{ currentFolderName }
+export { currentFolderName };

@@ -37,7 +37,7 @@ newToDo.addEventListener("click", addProj);
 addNoteButton.addEventListener("click", buildNoteFolder);
 submitNoteButton.addEventListener("click", submitNote);
 submitProjectButton.addEventListener("click", submitProject);
-submitProjectButton.addEventListener("click", displayMyProject);
+//submitProjectButton.addEventListener("click", displayMyProject);
 document.addEventListener("click", checkforButton);
 projectList.forEach((item) => {
     item.addEventListener("click", () => {
@@ -49,6 +49,6 @@ projectList.forEach((item) => {
       if(item.id==='generalFolder'){
         displayGeneral();
       }
-      //currentFolderName should it be editable?
+      //currentFolderName should it be editable? should it be deletable?
     });
 });
