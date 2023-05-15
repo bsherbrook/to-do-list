@@ -49,10 +49,16 @@ export function submitNote(event) {
 }
 export function displayMyNotes() {
   //must style notes and set up grid pattern for dom creation and plan for overflow in note and multiples notes overflowing the content box
+  //on to do items, check marks dont save when reloading folders
+  //add functionality for note buttons edit and x
+  //must give option to delete project folders
+  //add night mode restyling option?
+  //add notes priority level?
+  //how to make so hitting enter on forms submits form or at least doesnt close form?
   const content = document.getElementById("contentBody");
   content.innerText = "";
   const folderName = document.getElementById("currentFolderName");
-  folderName.innerText = 'Notepad';
+  folderName.innerText = "Notepad";
   currentFolderName = folderName.innerText;
   for (let i = 0; i < myNotepad.length; i++) {
     const toDoNote = document.createElement("div");
@@ -60,12 +66,20 @@ export function displayMyNotes() {
     toDoNote.id = `toDoNote${i}`;
 
     const noteTitle = document.createElement("h3");
-    noteTitle.id = "noteTitle";
+    noteTitle.className = "noteTitleH3";
+    noteTitle.id = `${i}`;
     noteTitle.textContent = myNotepad[i].title;
+    noteTitle.contentEditable = true;
+    noteTitle.spellcheck = false;
+    noteTitle.addEventListener("input", editNoteDetails);
     toDoNote.appendChild(noteTitle);
 
     const noteDescription = document.createElement("div");
-    noteDescription.id = "noteDescription";
+    noteDescription.className = "noteDescriptionDiv";
+    noteDescription.id = `${i}`;
+    noteDescription.contentEditable = true;
+    noteDescription.spellcheck = false;
+    noteDescription.addEventListener("input", editNoteDetails);
     noteDescription.textContent = myNotepad[i].description;
     toDoNote.appendChild(noteDescription);
 
@@ -74,8 +88,9 @@ export function displayMyNotes() {
 
     const editNote = document.createElement("button");
     editNote.id = `${i}`;
+    editNote.classList.add = "editNoteButton";
     editNote.textContent = "Edit";
-    editNote.addEventListener("click", editNoteDetails);
+    //editNote.addEventListener("click", editNoteDetails);
     bottomNote.appendChild(editNote);
 
     const removeNote = document.createElement("button");
@@ -94,11 +109,20 @@ export function displayMyNotes() {
     // }
   }
 }
-function editNoteDetails() {
-  console.log("testing NoteDetails");
+
+function editNoteDetails(x) {
+  let targetID = x.target.id;
+  if (x.target.className === "noteTitleH3") {
+    myNotepad[targetID].title = x.target.innerText;
+  }
+  if (x.target.className === "noteDescriptionDiv") {
+    myNotepad[targetID].description = x.target.innerText;
+  }
 }
-function removeMyNote() {
-  console.log("testing removeNote");
+function removeMyNote(x) {
+  let targetNote = x.target.id;
+  myNotepad.splice(targetNote, 1);
+  displayMyNotes();
 }
 
 // export function buildNoteFolder() {

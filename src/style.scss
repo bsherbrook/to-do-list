@@ -86,6 +86,13 @@ body {
       width: 100%;
       height: 100%;
       position: relative;
+      #contentBody{
+        display: block;
+        overflow-y: auto;
+        width: 1000px;
+        height: 580px;
+        background-color: white;
+      }
       .toDoNote{
         border: 1px solid black;
         background-color: yellow;
@@ -93,9 +100,10 @@ body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        overflow:hidden;
+        overflow-y: auto;
         width: 150px;
         height: 150px;
+        padding: 5px;
       }
       .toDoProj{
         display: flex;
