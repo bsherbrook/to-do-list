@@ -104,6 +104,7 @@ body {
         width: 150px;
         height: 150px;
         padding: 5px;
+        resize: both;  //add event listener to remember resize positioning?
       }
       .toDoProj{
         display: flex;

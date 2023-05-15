@@ -36,12 +36,14 @@ export { myNotepad };
 export function submitNote(event) {
   let noteTitle = document.getElementById("noteTitle").value;
   let noteDescription = document.getElementById("noteDescription").value;
-  function noteData(noteTitle, noteDescription) {
+  let colorSelectValue= document.getElementById("colorSelect").value;
+  function noteData(noteTitle, noteDescription, colorSelectValue) {
     this.title = noteTitle;
     this.description = noteDescription;
+    this.color= colorSelectValue;
   }
   if (noteTitle) {
-    myNotepad.push(new noteData(noteTitle, noteDescription));
+    myNotepad.push(new noteData(noteTitle, noteDescription, colorSelectValue));
     event.preventDefault();
     addNote();
     displayMyNotes();
@@ -49,12 +51,12 @@ export function submitNote(event) {
 }
 export function displayMyNotes() {
   //must style notes and set up grid pattern for dom creation and plan for overflow in note and multiples notes overflowing the content box
+  //add color values in HTML to match exact colors for styles or define custom variables and set those as HTML values
   //on to do items, check marks dont save when reloading folders
-  //add functionality for note buttons edit and x
   //must give option to delete project folders
   //add night mode restyling option?
-  //add notes priority level?
   //how to make so hitting enter on forms submits form or at least doesnt close form?
+  //store info so it saves when you close the page
   const content = document.getElementById("contentBody");
   content.innerText = "";
   const folderName = document.getElementById("currentFolderName");
@@ -64,6 +66,8 @@ export function displayMyNotes() {
     const toDoNote = document.createElement("div");
     toDoNote.classList.add("toDoNote");
     toDoNote.id = `toDoNote${i}`;
+    toDoNote.style.position = "relative";
+    toDoNote.style.backgroundColor= `${myNotepad[i].color}`;
 
     const noteTitle = document.createElement("h3");
     noteTitle.className = "noteTitleH3";
@@ -83,30 +87,17 @@ export function displayMyNotes() {
     noteDescription.textContent = myNotepad[i].description;
     toDoNote.appendChild(noteDescription);
 
-    const bottomNote = document.createElement("div");
-    bottomNote.id = "bottomeNote";
-
-    const editNote = document.createElement("button");
-    editNote.id = `${i}`;
-    editNote.classList.add = "editNoteButton";
-    editNote.textContent = "Edit";
-    //editNote.addEventListener("click", editNoteDetails);
-    bottomNote.appendChild(editNote);
-
     const removeNote = document.createElement("button");
+    removeNote.style.position = "absolute";
+    removeNote.style.bottom = "5px";
     removeNote.id = `${i}`;
     removeNote.textContent = "X";
     removeNote.classList.add("removeNoteButton");
     removeNote.addEventListener("click", removeMyNote);
-    bottomNote.appendChild(removeNote);
 
-    toDoNote.appendChild(bottomNote);
+    toDoNote.appendChild(removeNote);
 
     content.appendChild(toDoNote);
-    //if high priority project style element
-    // if(myNotepad[i].priority===true){
-    //     toDoNote.style.border= '3px solid red';
-    // }
   }
 }
 
