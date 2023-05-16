@@ -3,6 +3,7 @@ import { myProjects, currentFolderName, addProj } from "./addProject";
 export function displayMyProject(){
     let x = myProjects.length-1;
     const content= document.getElementById('contentBody');
+    content.style.display='block';
     const toDoProj = document.createElement("div");
     toDoProj.classList.add('toDoProj');
     toDoProj.id = `toDoProj${x}`;
@@ -12,11 +13,14 @@ export function displayMyProject(){
     // create the checkbox input element
     const projComplete = document.createElement("input");
     projComplete.type = "checkbox";
-    projComplete.id = "ProjComplete";
+    projComplete.id = `${x}`;
+    projComplete.checked=myProjects[x].status;
+    projComplete.addEventListener('click', strikeText);
+   
     leftsideProj.appendChild(projComplete);
     // create the project title element
     const projTitle = document.createElement("div");
-    projTitle.id = "projTitle";
+    projTitle.id = `projTitle${x}`;
     projTitle.textContent = myProjects[x].title;
     leftsideProj.appendChild(projTitle);
     // create the right-side project container
@@ -50,6 +54,21 @@ export function displayMyProject(){
         toDoProj.style.border= '3px solid red';
     }
 }
+function strikeText(event){
+    let x=event.target.id;
+    let checkedToDo= document.getElementById(`toDoProj${x}`);
+    let toDoTitleText= document.getElementById(`projTitle${x}`).textContent;
+    if(myProjects[x].status===false){
+        checkedToDo.style.border= 'inset';
+        myProjects[x].status=true;
+        document.getElementById(`projTitle${x}`).innerHTML=`<del>${toDoTitleText}</del>`;
+    }   else{
+        document.getElementById(`projTitle${x}`).innerHTML=`${toDoTitleText}`;
+        checkedToDo.style.border= '1px solid black';
+        myProjects[x].status=false;
+    }
+
+}
 //doesnt just append last project appends all
 export function organizeProjectFolder(){
     const contentBody= document.getElementById('contentBody');
@@ -57,6 +76,7 @@ export function organizeProjectFolder(){
     for (let i=0; i<myProjects.length; i++){
       if(myProjects[i].folder===currentFolderName){  
             const content= document.getElementById('contentBody');
+            content.style.display='block';
             const toDoProj = document.createElement("div");
             toDoProj.classList.add('toDoProj');
             toDoProj.id = `toDoProj${i}`;
@@ -66,12 +86,19 @@ export function organizeProjectFolder(){
             // create the checkbox input element
             const projComplete = document.createElement("input");
             projComplete.type = "checkbox";
-            projComplete.id = "ProjComplete";
+            projComplete.checked=myProjects[i].status;
+            projComplete.id = `${i}`;
+            projComplete.addEventListener('click', strikeText);
+            
             leftsideProj.appendChild(projComplete);
             // create the project title element
             const projTitle = document.createElement("div");
-            projTitle.id = "projTitle";
+            projTitle.id = `projTitle${i}`;
             projTitle.textContent = myProjects[i].title;
+            if(projComplete.checked===true){
+                toDoProj.style.border='inset';
+                projTitle.innerHTML= `<del>${myProjects[i].title}</del>`;
+            }
             leftsideProj.appendChild(projTitle);
             // create the right-side project container
             const rightsideProj = document.createElement("div");
@@ -109,6 +136,7 @@ export function organizeProjectFolder(){
 export function displayGeneral(){
     const content= document.getElementById('contentBody');
     content.innerText='';
+    content.style.display='block';
     for (let i=0; i<myProjects.length; i++){
         //const content= document.getElementById('contentBody');
         const toDoProj = document.createElement("div");
@@ -120,12 +148,19 @@ export function displayGeneral(){
         // create the checkbox input element
         const projComplete = document.createElement("input");
         projComplete.type = "checkbox";
-        projComplete.id = "ProjComplete";
+        projComplete.checked= myProjects[i].status;
+        projComplete.id = `${i}`;
+        projComplete.addEventListener('click', strikeText);
+
         leftsideProj.appendChild(projComplete);
         // create the project title element
         const projTitle = document.createElement("div");
-        projTitle.id = "projTitle";
+        projTitle.id = `projTitle${i}`;
         projTitle.textContent = myProjects[i].title;
+        if(projComplete.checked===true){
+            toDoProj.style.border='inset';
+            projTitle.innerHTML= `<del>${myProjects[i].title}</del>`;
+        }
         leftsideProj.appendChild(projTitle);
         // create the right-side project container
         const rightsideProj = document.createElement("div");

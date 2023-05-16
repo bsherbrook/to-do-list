@@ -88,6 +88,7 @@ body {
       position: relative;
       #contentBody{
         display: block;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         overflow-y: auto;
         width: 1000px;
         height: 580px;

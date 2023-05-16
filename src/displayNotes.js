@@ -51,8 +51,6 @@ export function submitNote(event) {
 }
 export function displayMyNotes() {
   //must style notes and set up grid pattern for dom creation and plan for overflow in note and multiples notes overflowing the content box
-  //add color values in HTML to match exact colors for styles or define custom variables and set those as HTML values
-  //on to do items, check marks dont save when reloading folders
   //must give option to delete project folders
   //add night mode restyling option?
   //how to make so hitting enter on forms submits form or at least doesnt close form?
@@ -62,6 +60,7 @@ export function displayMyNotes() {
   const folderName = document.getElementById("currentFolderName");
   folderName.innerText = "Notepad";
   currentFolderName = folderName.innerText;
+  content.style.display='grid';
   for (let i = 0; i < myNotepad.length; i++) {
     const toDoNote = document.createElement("div");
     toDoNote.classList.add("toDoNote");

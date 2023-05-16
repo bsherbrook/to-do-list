@@ -46,13 +46,15 @@ export function submitProject(event) {
     projectDescription,
     projectDueDate,
     projectPriority,
-    currentFolderName //must distinguish further between notes and Projects?
+    currentFolderName,
+    status
   ) {
     this.title = projectTitle;
     this.description = projectDescription;
     this.date = projectDueDate;
     this.priority = projectPriority;
     this.folder = currentFolderName;
+    this.status = false;
   }
   if (editDetailsSwitch=== false) {
     myProjects.push(
@@ -61,7 +63,8 @@ export function submitProject(event) {
         projectDescription,
         projectDueDate,
         projectPriority,
-        currentFolderName
+        currentFolderName,
+        status
       )
     );
     event.preventDefault();
