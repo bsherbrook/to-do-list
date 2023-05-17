@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Dekko&family=Quicksand&family=Roboto:wght@300&family=Sniglet&family=Walter+Turncoat&display=swap');
 body {
   box-sizing: border-box;
   display: flex;
@@ -6,6 +7,7 @@ body {
   justify-content: center;
   margin: 0;
   padding: 0;
+  background-color: rgb(251, 240, 255);
 
   button:hover{
     cursor: pointer;
@@ -13,34 +15,71 @@ body {
   #card {
     display: grid;
     grid-template-rows: 1fr 9fr;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 2fr 4fr;
     margin-top: 100px;
     background-color: aliceblue;
     height: 700px;
     width: 1200px;
-
     #header {
       grid-column: 1/3;
       box-sizing: border-box;
       display: flex;
-      padding: 20px;
+      align-items: center;
+      padding: 15px 30px 10px 30px;
       justify-content: space-between;
       background-color: rgb(107, 184, 251);
-      font-size: 25px;
+      font-size: 35px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      font-family: 'Cabin Sketch', cursive;
+      //font-family: 'Quicksand', sans-serif;
+      //font-family: 'Sniglet', cursive;
+      //font-family: 'Roboto', sans-serif;
+      //font-family: 'Walter Turncoat', cursive;
+      //font-family: 'Dekko', cursive;
+      button{
+        border-radius: 5px;
+        height: 25px;
+        font-size: 15px;
+        font-family: 'Quicksand', sans-serif;
+        color: white;
+        border: 1px solid white;
+        background-color: rgb(107, 184, 251);;
+        &:hover{
+          background-color: rgb(91, 175, 249);
+        }
+      }
     }
     #sidebar {
+      font-family: 'Walter Turncoat', cursive;
+      font-size:20px;
       box-sizing: border-box;
-      padding: 5px;
+      padding: 10px 10px 10px 20px;
       display: flex;
       flex-direction: column;
       grid-row: 2/3;
       margin: 0;
-      width: 100%;
+      width: 235px;
       height: 100%;
-      background-color: aquamarine;
+      background-color: rgb(185, 222, 255);
+      border-bottom-left-radius: 10px;
+        #projectList, #noteList{
+        list-style: none;
+          #addProjectButton{
+            display: flex;
+            align-items: center;
+            height: 25px;
+            width: 25px;
+            font-size: 20px;
+            font-family: 'Walter Turncoat', cursive;
+            color: black;
+            border-radius: 5px;
+            border: outset white 1px;
+            background-color: rgb(185, 222, 255);
+          }
+        }
         .projectFolder, .noteFolder{
-          background-color: antiquewhite;
-          font-size: 15px;
+          font-size: 20px;
           display: inline-block;
           &:hover{
             cursor: pointer;
@@ -61,18 +100,19 @@ body {
     #content-card {
       box-sizing: border-box;
       position: relative;
-      background-color:antiquewhite;
+      background-color:rgb(234, 255, 255);
       display: flex;
       flex-direction: column;
       grid-column: 2/3;
       padding: 8px;
-      
+      border-bottom-right-radius: 10px;
       #content-card-buttons{
         display:flex;
         justify-content: flex-end;
         padding: 5px;
         align-items: center;
         column-gap: 10px;
+        background-color: rgb(202, 255, 255);
         #addToDoItem{
           font-size: 25px;
           border-radius: 15px;  
@@ -80,19 +120,22 @@ body {
       }  
     }
     #content {
+      background-color:rgb(233, 252, 252);
       box-sizing: border-box;
       padding: 5px;
-      background-color:rgb(255, 249, 242);
       width: 100%;
       height: 100%;
       position: relative;
+      #currentFolderDisplay{
+        font-family: 'Cabin Sketch', cursive;
+        font-size: 22px;
+      }
       #contentBody{
         display: block;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         overflow-y: auto;
         width: 1000px;
         height: 580px;
-        background-color: white;
       }
       .toDoNote{
         border: 1px solid black;

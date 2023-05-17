@@ -51,7 +51,7 @@ export function displayMyProject(){
     content.appendChild(toDoProj);
     //if high priority project style element
     if(myProjects[x].priority===true){
-        toDoProj.style.border= '3px solid red';
+        projTitle.style.color= 'red';
     }
 }
 function strikeText(event){
@@ -128,7 +128,7 @@ export function organizeProjectFolder(){
             content.appendChild(toDoProj);
             //if high priority project style element
             if(myProjects[i].priority===true){
-                toDoProj.style.border= '3px solid red';
+                projTitle.style.color= 'red';
             }
         }    
     }
@@ -190,7 +190,7 @@ export function displayGeneral(){
         content.appendChild(toDoProj);
         //if high priority project style element
         if(myProjects[i].priority===true){
-            toDoProj.style.border= '3px solid red';
+            projTitle.style.color= 'red';
         }         
     }   
 }

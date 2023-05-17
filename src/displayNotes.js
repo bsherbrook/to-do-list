@@ -52,6 +52,7 @@ export function submitNote(event) {
 export function displayMyNotes() {
   //must style notes and set up grid pattern for dom creation and plan for overflow in note and multiples notes overflowing the content box
   //must give option to delete project folders
+  //conflicting border assignments between high priority and checked complete todo's
   //add night mode restyling option?
   //how to make so hitting enter on forms submits form or at least doesnt close form?
   //store info so it saves when you close the page
