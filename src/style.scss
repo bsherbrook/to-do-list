@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Dekko&family=Quicksand&family=Roboto:wght@300&family=Sniglet&family=Walter+Turncoat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Dekko&family=Quicksand&family=Roboto:wght@300&family=Sniglet&family=Walter+Turncoat&display=swap");
 body {
   box-sizing: border-box;
   display: flex;
@@ -7,9 +7,9 @@ body {
   justify-content: center;
   margin: 0;
   padding: 0;
-  background-color:rgb(0, 33, 58);
+  background-color: rgb(0, 33, 58);
 
-  button:hover{
+  button:hover {
     cursor: pointer;
   }
   #card {
@@ -26,35 +26,36 @@ body {
       box-sizing: border-box;
       display: flex;
       align-items: center;
+      border-bottom: 1px solid rgb(43, 65, 207);
       padding: 15px 30px 10px 30px;
       justify-content: space-between;
-      background-color: rgb(107, 184, 251);
+      background-color: rgb(70, 169, 255);
       font-size: 35px;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
-      font-family: 'Cabin Sketch', cursive;
+      font-family: "Cabin Sketch", cursive;
       //font-family: 'Quicksand', sans-serif;
       //font-family: 'Sniglet', cursive;
       //font-family: 'Roboto', sans-serif;
       //font-family: 'Walter Turncoat', cursive;
       //font-family: 'Dekko', cursive;
-      button{
+      button {
         border-radius: 5px;
         height: 25px;
         font-weight: 900;
         font-size: 15px;
-        font-family: 'Quicksand', sans-serif;
+        font-family: "Quicksand", sans-serif;
         color: white;
         border: 1px solid white;
-        background-color: rgb(107, 184, 251);;
-        &:hover{
+        background-color: rgb(107, 184, 251);
+        &:hover {
           background-color: rgb(91, 175, 249);
         }
       }
     }
     #sidebar {
-      font-family: 'Walter Turncoat', cursive;
-      font-size:20px;
+      font-family: "Walter Turncoat", cursive;
+      font-size: 20px;
       box-sizing: border-box;
       padding: 10px 10px 10px 20px;
       display: flex;
@@ -63,60 +64,62 @@ body {
       margin: 0;
       width: 235px;
       height: 100%;
-      background-color: rgb(185, 222, 255);
+      background-color: rgb(247, 253, 217);
       border-bottom-left-radius: 10px;
-        #projectList, #noteList{
+      #projectList,
+      #noteList {
         list-style: none;
-          li{
-            margin-bottom: 10px;
+        li {
+          margin-bottom: 10px;
+        }
+        #addProjectButton {
+          display: flex;
+          align-items: center;
+          height: 25px;
+          width: 25px;
+          font-size: 20px;
+          font-family: "Walter Turncoat", cursive;
+          font-weight: 700;
+          color: rgb(63, 39, 12);
+          border-radius: 5px;
+          border: rgb(170, 167, 83) 2px;
+          border-style: dashed;
+          background-color: rgb(255, 251, 237);
+        }
+        #newFolderLI {
+          margin: 10px 0 10px -50px;
+
+          input {
+            border-radius: 10px;
+            border: 1px solid white;
+            height: 20px;
+            font-family: Roboto, sans-serif;
+            font-size: 15px;
           }
-          #addProjectButton{
-            display: flex;
-            align-items: center;
-            height: 25px;
-            width: 25px;
-            font-size: 20px;
-            font-family: 'Walter Turncoat', cursive;
-            font-weight: 700;
-            color: black;
-            border-radius: 5px;
-            border: rgb(227, 241, 255) 2px;
-            border-style:dashed;
-            background-color: rgb(185, 222, 255);
-          }
-          #newFolderLI{
-            margin: 10px 0 10px -50px;
-            
-            input{
+          #newFolderButtons {
+            margin-left: -20px;
+            button {
               border-radius: 10px;
-              border: 1px solid white;
-              height: 20px;
-              font-family: Roboto, sans-serif;
-              font-size: 15px;
+              border-color: rgb(55, 194, 253);
+              font-family: "Sniglet", cursive;
             }
-            #newFolderButtons{
-              margin-left: -20px;
-              button{
-                border-radius: 10px;
-                border-color: rgb(55, 194, 253);
-                font-family: 'Sniglet', cursive;
-              }
-            }  
           }
         }
-        .projectFolder, .noteFolder{
-          font-size: 20px;
-          display: inline-block;
-          &:hover{
-            cursor: pointer;
-          }
-        }  
-      #newFolderBox{
+      }
+      .projectFolder,
+      .noteFolder {
+        font-size: 20px;
+        display: inline-block;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      #newFolderBox {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;  
-        #newFolderButtons{
+        align-items: center;
+        #newFolderButtons {
           display: flex;
           column-gap: 15px;
           margin: 5px;
@@ -126,54 +129,54 @@ body {
     #content-card {
       box-sizing: border-box;
       position: relative;
-      background-color:rgb(234, 255, 255);
+      background-color: rgb(0, 15, 51);
       display: flex;
       flex-direction: column;
       grid-column: 2/3;
-      padding: 8px;
+      padding: 1px 0 0 1px;
       border-bottom-right-radius: 10px;
-      #content-card-buttons{
-        display:flex;
+      #content-card-buttons {
+        display: flex;
         justify-content: flex-end;
-        padding: 5px;
+        padding: 5px 30px 5px 0;
         font-size: 20px;
         align-items: center;
         column-gap: 30px;
-        background-color: rgb(202, 255, 255);
-        font-family: 'Cabin Sketch', cursive;
-        //font-family: 'Quicksand', sans-serif;
-        //font-family: 'Sniglet', cursive;
-        //font-family: 'Roboto', sans-serif;
-        //font-family: 'Walter Turncoat', cursive;
-        //font-family: 'Dekko', cursive;
-        #addToDoItem{
-          font-size: 25px;
-          border-radius: 15px;  
+        border-bottom-right-radius: 10px;
+        background-color: rgb(40, 201, 249);
+        border-top: 1px solid black;
+        font-family: "Cabin Sketch", cursive;
+        button {
+          font-size: 20px;
+          border-radius: 15px;
+          border: 1px solid blue;
+          font-family: "Cabin Sketch", cursive;
         }
-      }  
+      }
     }
     #content {
-      background-color:rgb(233, 252, 252);
+      background-color: rgb(207, 246, 252);
       box-sizing: border-box;
       padding: 5px;
       width: 100%;
       height: 100%;
       position: relative;
-      #currentFolderDisplay{
+      #currentFolderDisplay {
         display: flex;
         column-gap: 10px;
-        font-family: 'Cabin Sketch', cursive;
-        font-size: 22px;
+        padding: 12px;
+        font-family: "Cabin Sketch", cursive;
+        font-size: 25px;
         border-bottom: 1px dashed black;
       }
-      #contentBody{
+      #contentBody {
         display: block;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         overflow-y: auto;
         width: 1000px;
         height: 580px;
       }
-      .toDoNote{
+      .toDoNote {
         border: 1px solid black;
         background-color: yellow;
         display: flex;
@@ -184,22 +187,30 @@ body {
         width: 150px;
         height: 150px;
         padding: 5px;
-        resize: both;  //add event listener to remember resize positioning?
+        resize: both; //add event listener to remember resize positioning?
       }
-      .toDoProj{
+      .toDoProj {
         display: flex;
-        background-color: white;
+        background-color: rgb(221, 249, 251);
         justify-content: space-between;
-        padding: 5px;
+        padding: 10px;
+        font-size: 20px;
         align-items: center;
         border: 1px solid black;
-        #leftsideProj{
+        font-family: "Quicksand", sans-serif;
+
+        #leftsideProj {
           display: flex;
           column-gap: 10px;
         }
-        #rightsideProj{
+        #rightsideProj {
           display: flex;
           column-gap: 10px;
+          button {
+            border-radius: 5px;
+            border: 1px solid rgb(0, 0, 0);
+            background-color: rgb(226, 248, 253);
+          }
         }
       }
       #formBox {
@@ -210,11 +221,17 @@ body {
         display: flex;
         flex-direction: column;
         padding: 10px;
-        background-color: aqua;
+        background-color: rgb(107, 184, 251);
+        border-radius: 10px;
         justify-content: center;
         align-items: center;
-        padding: 10px;
         z-index: -1;
+        #formBottom {
+          justify-content: center;
+          #priority {
+            margin-right: 20px;
+          }
+        }
 
         #modalForm {
           display: flex;
@@ -222,6 +239,37 @@ body {
           justify-content: center;
           align-items: center;
           z-index: -1;
+          margin: 0 5px 5px 5px;
+          font-size: 20px;
+          //font-family: 'Cabin Sketch', cursive;
+          //font-family: 'Quicksand', sans-serif;
+          //font-family: 'Sniglet', cursive;
+          //font-family: 'Roboto', sans-serif;
+          //font-family: 'Walter Turncoat', cursive;
+          font-family: "Dekko", cursive;
+          input,
+          #projectDescription {
+            border-radius: 10px;
+            border-style: none;
+          }
+        }
+        #buttonFormBox {
+          display: flex;
+          column-gap: 25px;
+          button,
+          input {
+            border-radius: 5px;
+            border-style: none;
+            height: 20px;
+            min-width: 25px;
+            text-align: center;
+            font-family: "Dekko", cursive;
+            &:hover {
+              cursor: pointer;
+              background-color: rgb(216, 237, 255);
+              border: blue 1px solid;
+            }
+          }
         }
       }
       #noteBox {
@@ -232,31 +280,90 @@ body {
         display: flex;
         flex-direction: column;
         padding: 10px;
-        background-color: aqua;
+        background-color: rgb(107, 184, 251);
+        border-radius: 10px;
         justify-content: center;
         align-items: center;
-        padding: 10px;
         z-index: -1;
         #noteForm {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          z-index: -1;
+          margin: 0 5px 5px 5px;
+          font-size: 20px;
+          //font-family: 'Cabin Sketch', cursive;
+          //font-family: 'Quicksand', sans-serif;
+          //font-family: 'Sniglet', cursive;
+          //font-family: 'Roboto', sans-serif;
+          //font-family: 'Walter Turncoat', cursive;
+          font-family: "Dekko", cursive;
+          input,
+          #noteDescription {
+            border-radius: 10px;
+            border-style: none;
+          }
+        }
+        #buttonFormBox {
+          display: flex;
+          column-gap: 25px;
+          button,
+          input {
+            border-radius: 5px;
+            border-style: none;
+            height: 20px;
+            min-width: 25px;
+            text-align: center;
+            font-family: "Dekko", cursive;
+            //padding-bottom: 5px;
+            &:hover {
+              cursor: pointer;
+              background-color: rgb(216, 237, 255);
+              border: blue 1px solid;
+            }
+          }
         }
       }
-      #modalDetails{
+      #modalDetails {
         opacity: 0%;
         position: absolute;
-        left: 200px;
+        width: 300px;
+        left: 270px;
         top: 170px;
         display: flex;
         flex-direction: column;
-        padding: 10px;
-        background-color: aqua;
+        font-size: 20px;
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid black;
+        font-family: "Quicksand", sans-serif;
+        background-color: rgb(121, 192, 255);
         justify-content: center;
         align-items: center;
-        padding: 10px;
         z-index: -1;
+          #editModalDetails, #cancelModalDetails{
+            margin-right: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            font-size: 20px;
+            font-family: 'Sniglet', cursive;
+          }
+          div{
+            font-size: 25px;
+            font-family: 'Sniglet', cursive;
+          }
+          #modalTitleData{
+            font-family: "Cabin Sketch", cursive;
+            font-size: 40px;
+        }
+          #modalFolderData,
+          #modalPriorityData,
+          #modalDateData,
+          #modalDetailsData {
+            margin-left: 10px;
+            font-size: 20px;
+        }
       }
     }
   }

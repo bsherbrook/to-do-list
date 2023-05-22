@@ -3,13 +3,21 @@ import { addProjSwitch, currentFolderName } from "./addProject";
 export { addNoteSwitch };
 let addNoteSwitch = true;
 const noteBox = document.getElementById("noteBox");
-
+const card= document.getElementById('card');
 //Note form appears
 export function addNote() {
   if (addProjSwitch === false) {
     addProj();
   }
   if (addNoteSwitch === true) {
+    // const backgroundModal= document.createElement('div');
+    // backgroundModal.style.backgroundColor='black';
+    // backgroundModal.style.opacity='50%';
+    // backgroundModal.style.height='100%';
+    // backgroundModal.style.width='100%';
+    // backgroundModal.style.position='absolute'
+    // document.body.appendChild(backgroundModal);
+    // modalDetails display priority as true false
     noteBox.style.transition = "opacity .6s ease-in";
     noteBox.style.opacity = "100%";
     noteBox.style.zIndex = "1";
@@ -52,10 +60,10 @@ export function submitNote(event) {
 export function displayMyNotes() {
   //must style notes and set up grid pattern for dom creation and plan for overflow in note and multiples notes overflowing the content box
   //must give option to delete project folders
-  //conflicting border assignments between high priority and checked complete todo's
   //add night mode restyling option?
   //how to make so hitting enter on forms submits form or at least doesnt close form?
   //store info so it saves when you close the page
+  //Edit dates format steal adams due in ____ format
   const content = document.getElementById("contentBody");
   content.innerText = "";
   const folderName = document.getElementById("currentFolderName");
