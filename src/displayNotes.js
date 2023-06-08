@@ -59,8 +59,9 @@ export function submitNote(event) {
 }
 export function displayMyNotes() {
   //must style notes and set up grid pattern for dom creation and plan for overflow in note and multiples notes overflowing the content box
+  //mjst require toDo title in form validation
   //must give option to delete project folders
-  //add night mode restyling option?
+  //replace menu button with logo
   //how to make so hitting enter on forms submits form or at least doesnt close form?
   //store info so it saves when you close the page
   //Edit dates format steal adams due in ____ format

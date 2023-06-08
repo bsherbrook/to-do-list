@@ -2,13 +2,13 @@ import "./style.scss";
 import { sidebarDisplay } from "./menuButton";
 import {
   addProj,
-  //addNote,
-  //submitNote,
   submitProject,
   buildNewFolder,
-  //buildNoteFolder,
   checkforButton,
   currentFolderName,
+  noDeleteFolder,
+  cancelEditFolder,
+  submitNewFolderName
 } from "./addProject";
 import {
   displayMyProject,
@@ -26,9 +26,19 @@ const projectList = document.querySelectorAll(".projectFolder");
 const folderName = document.getElementById("currentFolderName");
 const cancelNoteButton = document.getElementById("cancelNote");
 const notepadFolder = document.getElementById("notepadFolder");
+const cancelFolderButton= document.getElementById("cancelFolderName");
+const submitFolderName= document.getElementById("submitFolderName");
 
 notepadFolder.addEventListener("click", displayMyNotes);
+notepadFolder.addEventListener("click", () => {
+  const folderDestroyer = document.getElementById("folderDestroyer");
+  if (folderDestroyer) {
+    noDeleteFolder();
+  }
+});
+submitFolderName.addEventListener("click", submitNewFolderName);
 cancelNoteButton.addEventListener("click", cancelNoteForm);
+cancelFolderButton.addEventListener("click", cancelEditFolder);
 menuButton.addEventListener("click", sidebarDisplay);
 addProject.addEventListener("click", buildNewFolder);
 newToDo.addEventListener("click", addProj);
@@ -45,6 +55,10 @@ projectList.forEach((item) => {
     }
     if (item.id === "generalFolder") {
       displayGeneral();
+      const folderDestroyer = document.getElementById("folderDestroyer");
+      if (folderDestroyer) {
+        noDeleteFolder();
+      }
     }
     //currentFolderName should it be editable? should it be deletable?
   });

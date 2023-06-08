@@ -4,17 +4,22 @@ import {
   targetToDo,
   displayGeneral,
   displayMyProject,
-  tempfolder
+  tempfolder,
 } from "./displayProjects";
-import { addNote, buildNoteFolder, submitNote, addNoteSwitch } from "./displayNotes";
+import {
+  addNote,
+  buildNoteFolder,
+  submitNote,
+  addNoteSwitch,
+} from "./displayNotes";
 const formBox = document.getElementById("formBox");
 let addProjSwitch = true;
-export {addProjSwitch};
+export { addProjSwitch };
 //Project form appears
 export function addProj() {
-  if (currentFolderName=== 'Notepad') {
+  if (currentFolderName === "Notepad") {
     addNote();
-    return
+    return;
   }
   if (addProjSwitch === true) {
     formBox.style.transition = "opacity .6s ease-in";
@@ -56,7 +61,7 @@ export function submitProject(event) {
     this.folder = currentFolderName;
     this.status = false;
   }
-  if (editDetailsSwitch=== false) {
+  if (editDetailsSwitch === false) {
     myProjects.push(
       new projectData(
         projectTitle,
@@ -92,9 +97,9 @@ export function submitProject(event) {
     addProj();
   }
 }
-const cancelProjectAdd= document.getElementById('cancelProject');
-cancelProjectAdd.addEventListener('click', cancelProjectForm);
-function cancelProjectForm(){
+const cancelProjectAdd = document.getElementById("cancelProject");
+cancelProjectAdd.addEventListener("click", cancelProjectForm);
+function cancelProjectForm() {
   formBox.style.opacity = "0";
   formBox.style.zIndex = "-1";
   addProjSwitch = true;
@@ -127,7 +132,7 @@ export function buildNewFolder() {
   const deleteButton = document.createElement("button");
   deleteButton.setAttribute("id", "deleteFolderButton");
   deleteButton.textContent = "X";
-  deleteButton.addEventListener('click', cancelFolder);
+  deleteButton.addEventListener("click", cancelFolder);
   // append the elements to the correct parents
   li.appendChild(div);
   div.appendChild(input);
@@ -140,9 +145,16 @@ export function buildNewFolder() {
     projectList.children[projectList.children.length - 1]
   );
 }
-function cancelFolder(){
-  const newFolderLI= document.getElementById('newFolderLI');
+function cancelFolder() {
+  const newFolderLI = document.getElementById("newFolderLI");
   newFolderLI.remove();
+}
+const folderButtonHolder= document.getElementById('folderButtonHolder');
+
+export function noDeleteFolder() {
+  const folderEditor= document.getElementById("folderEditor");
+  folderButtonHolder.removeChild(folderDestroyer);
+  folderButtonHolder.removeChild(folderEditor);
 }
 export function checkforButton(e) {
   const targetFolder = e.target.closest("#addFolderButton");
@@ -160,6 +172,23 @@ export function checkforButton(e) {
       const folderName = document.getElementById("currentFolderName");
       folderName.innerText = `${spanElement.innerText}`;
       currentFolderName = folderName.innerText;
+      const folderDestroyer = document.getElementById("folderDestroyer");
+      if (
+        currentFolderName !== "General" &&
+        currentFolderName !== "Notepad" &&
+        !folderDestroyer
+      ) {
+        const editFolderButton = document.createElement("button");
+        editFolderButton.innerText= "Edit Folder";
+        editFolderButton.setAttribute("id", "folderEditor");
+        editFolderButton.addEventListener("click", editFolder);
+        folderButtonHolder.appendChild(editFolderButton);
+        const deleteFolderButton = document.createElement("button");
+        deleteFolderButton.innerText = "Delete Folder";
+        deleteFolderButton.setAttribute("id", "folderDestroyer");
+        deleteFolderButton.addEventListener("click", deleteThisFolder);
+        folderButtonHolder.appendChild(deleteFolderButton);
+      }
       organizeProjectFolder();
     });
     spanElement.textContent = projectName;
@@ -171,6 +200,41 @@ export function checkforButton(e) {
       projectList.children[projectList.children.length - 1]
     );
   }
+}
+function deleteThisFolder() {
+  let tempArray = [];
+  for (let i = 0; i < myProjects.length; i++) {
+    if (myProjects[i].folder !== currentFolderName) {
+      tempArray.push(myProjects[i]);
+    }
+  }
+  myProjects = tempArray;
+  const folderName = document.getElementById("currentFolderName");
+  let deleteFolderName = currentFolderName;
+  folderName.innerText = "General";
+  currentFolderName = "General";
+  noDeleteFolder();
+  displayGeneral();
+  //remove folder from list menu
+  for (let i = 0; i < projectList.children.length; i++) {
+    if (projectList.children[i].innerText === deleteFolderName) {
+      projectList.children[i].remove();
+    }
+  }
+}
+const folderForm= document.getElementById('editFolderForm');
+function editFolder(){
+  folderForm.style.transition = "opacity .6s ease-in";
+  folderForm.style.display = "flex";
+  folderForm.style.opacity = "100%";
+  folderForm.style.zIndex = "1"; 
+}
+export function cancelEditFolder(){
+  folderForm.style.opacity = "0";
+  folderForm.style.zIndex = "-1";
+}
+export function submitNewFolderName(){
+  console.log('testing');
 }
 let currentFolderName = "General"; //this variable is what imprints on objects
 export { currentFolderName };
