@@ -21,13 +21,24 @@
         <h3>Notes</h3>
         <ul id="noteList">
           <li><span class="noteFolder" id="notepadFolder">Notepad</span></li>
-          <!-- <li><button id="addNoteButton">+</button></li> -->
         </ul>
       </div>
       <div id="content-card">
         <div id="content">
           <div id="currentFolderDisplay">
-            Current Folder:<span id="currentFolderName">General</span>
+            <div id="folderHolder">
+              Current Folder:<span id="currentFolderName" maxlength="15"
+                >General</span
+              >
+            </div>
+            <div id="folderButtonHolder"></div>
+          </div>
+          <div id="editFolderForm">
+            Tell us the name of your new folder:
+            <input type="text" id="editFolderInput" placeholder="New Folder Name Here" />
+            <div id="editFolderButtons">
+              <button id="submitFolderName">Submit</button><button id="cancelFolderName">X</button>
+            </div>
           </div>
           <div id="formBox">
             <form method="post" action="#" id="modalForm">
@@ -105,7 +116,7 @@
           <div id="contentBody"></div>
         </div>
         <div id="content-card-buttons">
-          <span>Add New Item</span><button id="addToDoItem">+</button><span>Delete Folder</span><button id="deleteFolderButton">X</button>
+          <span>Add New Item</span><button id="addToDoItem">+</button>
         </div>
       </div>
     </div>
