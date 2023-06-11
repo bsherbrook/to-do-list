@@ -170,10 +170,12 @@ body {
         font-size: 25px;
         border-bottom: 1px dashed black;
         
-        #folderDestroyer{
+        #folderDestroyer, #folderEditor{
+          margin-right: 10px;
           border-radius: 10px;
           border: 1px solid black;       
           font-family: "Cabin Sketch", cursive;
+          padding: 4px;
         }
       }
       #contentBody {

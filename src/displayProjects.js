@@ -67,7 +67,8 @@ function strikeText(event){
         checkedToDo.style.border= '1px solid black';
         myProjects[x].status=false;
     }
-
+    let arrayStorage= JSON.stringify(myProjects);
+    localStorage.setItem('projectArray', arrayStorage);
 }
 //doesnt just append last project appends all
 export function organizeProjectFolder(){
@@ -203,6 +204,8 @@ function cancelToDo(x){
     else{
         organizeProjectFolder();
     }
+    let arrayStorage= JSON.stringify(myProjects);
+    localStorage.setItem('projectArray', arrayStorage);
 }
 let detailsSwitch= true;
 let targetToDo;
@@ -223,8 +226,9 @@ function showDetails(x){
         title.innerText= myProjects[targetToDo].title;  //innerhtml?
         folder.innerText= myProjects[targetToDo].folder;
         date.innerText= myProjects[targetToDo].date;
-        priority.innerText=myProjects[targetToDo].priority;
         details.innerText= myProjects[targetToDo].description;
+        if(myProjects[targetToDo].priority===true){priority.innerText='High'}
+        if(myProjects[targetToDo].priority===false){priority.innerText='Low'}
         detailsSwitch=false;
     }
     else{

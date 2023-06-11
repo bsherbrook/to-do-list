@@ -8,7 +8,10 @@ import {
   currentFolderName,
   noDeleteFolder,
   cancelEditFolder,
-  submitNewFolderName
+  submitNewFolderName,
+  myProjects,
+  editFolder,
+  deleteThisFolder
 } from "./addProject";
 import {
   displayMyProject,
@@ -63,3 +66,58 @@ projectList.forEach((item) => {
     //currentFolderName should it be editable? should it be deletable?
   });
 });
+
+//need to write function add projects to sidebar from localStorage;
+//create an array from projectList.children[i].textContent;
+//create local storage for notes
+const storedArrayString= localStorage.getItem('projectArray');
+if(storedArrayString){
+  let storedArray= JSON.parse(storedArrayString);
+  myProjects=storedArray;
+  displayGeneral();
+  console.log(myProjects);
+}
+const storedSidebarString= localStorage.getItem('sidebarFolders');
+const folderButtonHolder = document.getElementById("folderButtonHolder");
+
+if(storedSidebarString){
+  let projectList= document.getElementById('projectList');
+  const sidebarArray= JSON.parse(storedSidebarString);
+  console.log(sidebarArray);
+
+  for(let i=0; i<sidebarArray.length; i++){
+    const liElement = document.createElement("li");
+    const spanElement = document.createElement("span");
+    spanElement.classList.add("projectFolder");
+    spanElement.addEventListener("click", () => {
+      const folderName = document.getElementById("currentFolderName");
+      folderName.innerText = `${spanElement.innerText}`;
+      currentFolderName = folderName.innerText;
+      const folderDestroyer = document.getElementById("folderDestroyer");
+      if (
+        currentFolderName !== "General" &&
+        currentFolderName !== "Notepad" &&
+        !folderDestroyer
+      ) {
+        const editFolderButton = document.createElement("button");
+        editFolderButton.innerText = "Edit Folder";
+        editFolderButton.setAttribute("id", "folderEditor");
+        editFolderButton.addEventListener("click", editFolder);
+        folderButtonHolder.appendChild(editFolderButton);
+        const deleteFolderButton = document.createElement("button");
+        deleteFolderButton.innerText = "Delete Folder";
+        deleteFolderButton.setAttribute("id", "folderDestroyer");
+        deleteFolderButton.addEventListener("click", deleteThisFolder);
+        folderButtonHolder.appendChild(deleteFolderButton);
+      }
+      organizeProjectFolder();
+    });
+
+    spanElement.textContent = sidebarArray[i];
+    liElement.appendChild(spanElement);
+     projectList.insertBefore(
+       liElement,
+       projectList.children[projectList.children.length - 1]
+     );
+  }
+}

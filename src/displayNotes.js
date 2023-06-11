@@ -10,18 +10,12 @@ export function addNote() {
     addProj();
   }
   if (addNoteSwitch === true) {
-    // const backgroundModal= document.createElement('div');
-    // backgroundModal.style.backgroundColor='black';
-    // backgroundModal.style.opacity='50%';
-    // backgroundModal.style.height='100%';
-    // backgroundModal.style.width='100%';
-    // backgroundModal.style.position='absolute'
-    // document.body.appendChild(backgroundModal);
-    // modalDetails display priority as true false
     noteBox.style.transition = "opacity .6s ease-in";
     noteBox.style.opacity = "100%";
     noteBox.style.zIndex = "1";
     addNoteSwitch = false;
+    const noteTitleInput= document.getElementById('noteTitle');
+    noteTitleInput.focus();
   } else {
     noteBox.style.opacity = "0";
     noteBox.style.zIndex = "-1";
@@ -59,11 +53,10 @@ export function submitNote(event) {
 }
 export function displayMyNotes() {
   //must style notes and set up grid pattern for dom creation and plan for overflow in note and multiples notes overflowing the content box
-  //mjst require toDo title in form validation
-  //must give option to delete project folders
   //replace menu button with logo
   //how to make so hitting enter on forms submits form or at least doesnt close form?
   //store info so it saves when you close the page
+  //need to write storage function to display folders on sidebar
   //Edit dates format steal adams due in ____ format
   const content = document.getElementById("contentBody");
   content.innerText = "";

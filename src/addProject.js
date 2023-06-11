@@ -27,6 +27,8 @@ export function addProj() {
     formBox.style.opacity = "100%";
     formBox.style.zIndex = "1";
     addProjSwitch = false;
+    const formTitleInput = document.getElementById("projectTitle");
+    formTitleInput.focus();
   } else {
     formBox.style.opacity = "0";
     formBox.style.zIndex = "-1";
@@ -46,55 +48,60 @@ export function submitProject(event) {
   let projectDescription = document.getElementById("projectDescription").value;
   let projectDueDate = document.getElementById("dueDate").value;
   let projectPriority = document.getElementById("priority").checked;
-  function projectData(
-    projectTitle,
-    projectDescription,
-    projectDueDate,
-    projectPriority,
-    currentFolderName,
-    status
-  ) {
-    this.title = projectTitle;
-    this.description = projectDescription;
-    this.date = projectDueDate;
-    this.priority = projectPriority;
-    this.folder = currentFolderName;
-    this.status = false;
-  }
-  if (editDetailsSwitch === false) {
-    myProjects.push(
-      new projectData(
-        projectTitle,
-        projectDescription,
-        projectDueDate,
-        projectPriority,
-        currentFolderName,
-        status
-      )
-    );
-    event.preventDefault();
-    addProj();
-    displayMyProject();
-  }
-  // if editing a toDo's details
-  if (editDetailsSwitch === true) {
-    myProjects[targetToDo] = new projectData(
+  if (projectTitle !== "") {
+    function projectData(
       projectTitle,
       projectDescription,
       projectDueDate,
       projectPriority,
-      tempfolder
-    );
-    const content = document.getElementById("contentBody");
-    content.innerText = "";
-    event.preventDefault();
-    if (currentFolderName === "General") {
-      displayGeneral();
-    } else {
-      organizeProjectFolder();
+      currentFolderName,
+      status
+    ) {
+      this.title = projectTitle;
+      this.description = projectDescription;
+      this.date = projectDueDate;
+      this.priority = projectPriority;
+      this.folder = currentFolderName;
+      this.status = false;
     }
-    editDetailsSwitch = false;
-    addProj();
+    if (editDetailsSwitch === false) {
+      myProjects.push(
+        new projectData(
+          projectTitle,
+          projectDescription,
+          projectDueDate,
+          projectPriority,
+          currentFolderName,
+          status
+        )
+      );
+      event.preventDefault();
+      addProj();
+      displayMyProject();
+    }
+    // if editing a toDo's details
+    if (editDetailsSwitch === true) {
+      myProjects[targetToDo] = new projectData(
+        projectTitle,
+        projectDescription,
+        projectDueDate,
+        projectPriority,
+        tempfolder
+      );
+      const content = document.getElementById("contentBody");
+      content.innerText = "";
+      event.preventDefault();
+      if (currentFolderName === "General") {
+        displayGeneral();
+      } else {
+        organizeProjectFolder();
+      }
+      editDetailsSwitch = false;
+      addProj();
+    }
+    //array localStorage test
+    let arrayStorage = JSON.stringify(myProjects);
+    localStorage.setItem("projectArray", arrayStorage);
   }
 }
 const cancelProjectAdd = document.getElementById("cancelProject");
@@ -122,7 +129,6 @@ export function buildNewFolder() {
   const input = document.createElement("input");
   input.setAttribute("id", "newFolder");
   input.setAttribute("type", "text");
-  input.setAttribute("autofocus", "");
   input.setAttribute("placeholder", "Enter Project Name");
   const buttonContainer = document.createElement("div");
   buttonContainer.setAttribute("id", "newFolderButtons");
@@ -144,18 +150,20 @@ export function buildNewFolder() {
     li,
     projectList.children[projectList.children.length - 1]
   );
+  input.focus();
 }
 function cancelFolder() {
   const newFolderLI = document.getElementById("newFolderLI");
   newFolderLI.remove();
 }
-const folderButtonHolder= document.getElementById('folderButtonHolder');
+const folderButtonHolder = document.getElementById("folderButtonHolder");
 
 export function noDeleteFolder() {
-  const folderEditor= document.getElementById("folderEditor");
+  const folderEditor = document.getElementById("folderEditor");
   folderButtonHolder.removeChild(folderDestroyer);
   folderButtonHolder.removeChild(folderEditor);
 }
+//add project to sidebar
 export function checkforButton(e) {
   const targetFolder = e.target.closest("#addFolderButton");
   const newFolderInput = document.getElementById("newFolder");
@@ -179,7 +187,7 @@ export function checkforButton(e) {
         !folderDestroyer
       ) {
         const editFolderButton = document.createElement("button");
-        editFolderButton.innerText= "Edit Folder";
+        editFolderButton.innerText = "Edit Folder";
         editFolderButton.setAttribute("id", "folderEditor");
         editFolderButton.addEventListener("click", editFolder);
         folderButtonHolder.appendChild(editFolderButton);
@@ -199,9 +207,24 @@ export function checkforButton(e) {
       liElement,
       projectList.children[projectList.children.length - 1]
     );
+    addFolderToStorage();
   }
 }
-function deleteThisFolder() {
+function addFolderToStorage() {
+  const projectList = document.getElementById("projectList");
+  let sidebarArray = [];
+  for (let i = 0; i < projectList.children.length; i++) {
+    if (
+      projectList.children[i].textContent !== "General" &&
+      projectList.children[i].textContent !== "+"
+    ) {
+      sidebarArray.push(projectList.children[i].textContent);
+    }
+  }
+  let sidebarString= JSON.stringify(sidebarArray)
+  localStorage.setItem('sidebarFolders', sidebarString);
+}
+export function deleteThisFolder() {
   let tempArray = [];
   for (let i = 0; i < myProjects.length; i++) {
     if (myProjects[i].folder !== currentFolderName) {
@@ -221,20 +244,48 @@ function deleteThisFolder() {
       projectList.children[i].remove();
     }
   }
+  addFolderToStorage();
+  let arrayStorage = JSON.stringify(myProjects);
+  localStorage.setItem("projectArray", arrayStorage);
 }
-const folderForm= document.getElementById('editFolderForm');
-function editFolder(){
+const folderForm = document.getElementById("editFolderForm");
+export function editFolder() {
   folderForm.style.transition = "opacity .6s ease-in";
   folderForm.style.display = "flex";
   folderForm.style.opacity = "100%";
-  folderForm.style.zIndex = "1"; 
+  folderForm.style.zIndex = "1";
 }
-export function cancelEditFolder(){
+export function cancelEditFolder() {
   folderForm.style.opacity = "0";
   folderForm.style.zIndex = "-1";
 }
-export function submitNewFolderName(){
-  console.log('testing');
+export function submitNewFolderName() {
+  const editFolderInput = document.getElementById("editFolderInput");
+  let newFolderName = editFolderInput.value;
+  if (newFolderName !== "") {
+    folderForm.style.opacity = "0";
+    folderForm.style.zIndex = "-1";
+    editFolderInput.value = "";
+    console.log(newFolderName);
+    for (let i = 0; i < myProjects.length; i++) {
+      if (myProjects[i].folder === currentFolderName) {
+        myProjects[i].folder = newFolderName;
+      }
+    }
+    const folderName = document.getElementById("currentFolderName");
+    folderName.innerText = newFolderName;
+    for (let i = 0; i < projectList.children.length; i++) {
+      if (projectList.children[i].innerText === currentFolderName) {
+        const sidebarLink = projectList.children[i];
+        const sidebarLinkSpan = sidebarLink.getElementsByTagName("span");
+        sidebarLinkSpan[0].innerText = newFolderName;
+      }
+    }
+    currentFolderName = newFolderName;
+  }
+  let arrayStorage = JSON.stringify(myProjects);
+  localStorage.setItem("projectArray", arrayStorage);
+  addFolderToStorage();
 }
 let currentFolderName = "General"; //this variable is what imprints on objects
 export { currentFolderName };
