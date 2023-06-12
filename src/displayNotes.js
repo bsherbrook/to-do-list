@@ -49,8 +49,11 @@ export function submitNote(event) {
     event.preventDefault();
     addNote();
     displayMyNotes();
+    let myNotepadString= JSON.stringify(myNotepad);
+    localStorage.setItem('notepadStorage', myNotepadString);
   }
 }
+
 export function displayMyNotes() {
   //must style notes and set up grid pattern for dom creation and plan for overflow in note and multiples notes overflowing the content box
   //replace menu button with logo
@@ -107,15 +110,21 @@ function editNoteDetails(x) {
   let targetID = x.target.id;
   if (x.target.className === "noteTitleH3") {
     myNotepad[targetID].title = x.target.innerText;
+    let myNotepadString= JSON.stringify(myNotepad);
+    localStorage.setItem('notepadStorage', myNotepadString);
   }
   if (x.target.className === "noteDescriptionDiv") {
     myNotepad[targetID].description = x.target.innerText;
+    let myNotepadString= JSON.stringify(myNotepad);
+    localStorage.setItem('notepadStorage', myNotepadString);
   }
 }
 function removeMyNote(x) {
   let targetNote = x.target.id;
   myNotepad.splice(targetNote, 1);
   displayMyNotes();
+  let myNotepadString= JSON.stringify(myNotepad);
+  localStorage.setItem('notepadStorage', myNotepadString);
 }
 
 // export function buildNoteFolder() {

@@ -266,7 +266,6 @@ export function submitNewFolderName() {
     folderForm.style.opacity = "0";
     folderForm.style.zIndex = "-1";
     editFolderInput.value = "";
-    console.log(newFolderName);
     for (let i = 0; i < myProjects.length; i++) {
       if (myProjects[i].folder === currentFolderName) {
         myProjects[i].folder = newFolderName;

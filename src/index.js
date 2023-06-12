@@ -18,7 +18,7 @@ import {
   organizeProjectFolder,
   displayGeneral,
 } from "./displayProjects";
-import { cancelNoteForm, submitNote, displayMyNotes } from "./displayNotes";
+import { cancelNoteForm, submitNote, displayMyNotes, myNotepad } from "./displayNotes";
 
 const menuButton = document.getElementById("drop-down");
 const addProject = document.getElementById("addProjectButton");
@@ -67,15 +67,11 @@ projectList.forEach((item) => {
   });
 });
 
-//need to write function add projects to sidebar from localStorage;
-//create an array from projectList.children[i].textContent;
-//create local storage for notes
 const storedArrayString= localStorage.getItem('projectArray');
 if(storedArrayString){
   let storedArray= JSON.parse(storedArrayString);
   myProjects=storedArray;
   displayGeneral();
-  console.log(myProjects);
 }
 const storedSidebarString= localStorage.getItem('sidebarFolders');
 const folderButtonHolder = document.getElementById("folderButtonHolder");
@@ -83,7 +79,6 @@ const folderButtonHolder = document.getElementById("folderButtonHolder");
 if(storedSidebarString){
   let projectList= document.getElementById('projectList');
   const sidebarArray= JSON.parse(storedSidebarString);
-  console.log(sidebarArray);
 
   for(let i=0; i<sidebarArray.length; i++){
     const liElement = document.createElement("li");
@@ -120,4 +115,10 @@ if(storedSidebarString){
        projectList.children[projectList.children.length - 1]
      );
   }
+}
+
+const storedNotepadString= localStorage.getItem('notepadStorage');
+if (storedNotepadString){
+  let storedNotepadArray= JSON.parse(storedNotepadString);
+  myNotepad= storedNotepadArray;
 }
