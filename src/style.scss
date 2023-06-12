@@ -190,13 +190,28 @@ body {
         background-color: yellow;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         overflow-y: auto;
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
         padding: 5px;
+        font-family: 'Walter Turncoat', cursive;
         resize: both; //add event listener to remember resize positioning?
+        .removeNoteButton{
+          border-radius: 10px;
+          border: 1px solid black;
+          position: absolute;
+          right: 1px;
+          top: 1px;
+          height: 15px;
+          font-size: 10px;
+          text-align: center;
+          overflow: hidden;
+          font-family: "Cabin Sketch", cursive;
+          &:hover{
+            background-color:rgb(197, 197, 197);
+          }
+        }
       }
       .toDoProj {
         display: flex;
