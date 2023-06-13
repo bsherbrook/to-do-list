@@ -28,7 +28,7 @@ body {
       align-items: center;
       border-bottom: 1px solid rgb(43, 65, 207);
       padding: 15px 30px 10px 30px;
-      justify-content: space-between;
+      justify-content: flex-end;
       background-color: rgb(70, 169, 255);
       font-size: 35px;
       border-top-left-radius: 10px;
@@ -184,6 +184,7 @@ body {
         overflow-y: auto;
         width: 1000px;
         height: 580px;
+        row-gap: 5px;
       }
       .toDoNote {
         border: 1px solid black;
@@ -196,7 +197,7 @@ body {
         height: 200px;
         padding: 5px;
         font-family: 'Walter Turncoat', cursive;
-        resize: both; //add event listener to remember resize positioning?
+        resize: both;
         .removeNoteButton{
           border-radius: 10px;
           border: 1px solid black;
@@ -250,6 +251,17 @@ body {
         justify-content: center;
         align-items: center;
         z-index: -1;
+        row-gap: 8px;
+        font-family: 'Cabin Sketch', cursive;
+          input{
+            border-radius: 10px;
+          }
+        button{
+          border: 1px solid black;
+          border-radius: 10px;
+          margin-left: 8px;
+          font-family: 'Walter Turncoat', cursive;
+        }
       }
       #formBox {
         opacity: 0%;

@@ -58,9 +58,6 @@ export function displayMyNotes() {
   //must style notes and set up grid pattern for dom creation and plan for overflow in note and multiples notes overflowing the content box
   //replace menu button with logo
   //how to make so hitting enter on forms submits form or at least doesnt close form?
-  //store info so it saves when you close the page
-  //need to write storage function to display folders on sidebar
-  //Edit dates format steal adams due in ____ format
   const content = document.getElementById("contentBody");
   content.innerText = "";
   const folderName = document.getElementById("currentFolderName");

@@ -1,5 +1,4 @@
 import "./style.scss";
-import { sidebarDisplay } from "./menuButton";
 import {
   addProj,
   submitProject,
@@ -20,7 +19,6 @@ import {
 } from "./displayProjects";
 import { cancelNoteForm, submitNote, displayMyNotes, myNotepad } from "./displayNotes";
 
-const menuButton = document.getElementById("drop-down");
 const addProject = document.getElementById("addProjectButton");
 const submitProjectButton = document.getElementById("submitProject");
 const submitNoteButton = document.getElementById("submitNote");
@@ -42,7 +40,6 @@ notepadFolder.addEventListener("click", () => {
 submitFolderName.addEventListener("click", submitNewFolderName);
 cancelNoteButton.addEventListener("click", cancelNoteForm);
 cancelFolderButton.addEventListener("click", cancelEditFolder);
-menuButton.addEventListener("click", sidebarDisplay);
 addProject.addEventListener("click", buildNewFolder);
 newToDo.addEventListener("click", addProj);
 submitNoteButton.addEventListener("click", submitNote);

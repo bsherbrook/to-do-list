@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/bsherbrook/to-do-list#readme",
   "dependencies": {
+    "date-fns": "^2.30.0",
     "webpack-cli": "^5.0.2"
   },
   "devDependencies": {

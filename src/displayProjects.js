@@ -1,4 +1,5 @@
 import { myProjects, currentFolderName, addProj } from "./addProject";
+import {format, formatDistanceToNow} from 'date-fns';
 
 export function displayMyProject(){
     let x = myProjects.length-1;
@@ -35,7 +36,9 @@ export function displayMyProject(){
     // create the project due date element
     const projDueDate = document.createElement("div");
     projDueDate.id = "projDueDate";
-    projDueDate.textContent = myProjects[x].date;
+    if(myProjects[x].date){
+        const formatDate= `Due ${formatDistanceToNow(new Date(myProjects[x].date), {addSuffix:true})}`
+        projDueDate.textContent = formatDate;}
     rightsideProj.appendChild(projDueDate);
     // create the cancel project button
     const cancelProj = document.createElement("button");
@@ -113,7 +116,9 @@ export function organizeProjectFolder(){
             // create the project due date element
             const projDueDate = document.createElement("div");
             projDueDate.id = "projDueDate";
-            projDueDate.textContent = myProjects[i].date;
+            if(myProjects[i].date){
+                const formatDate= `Due ${formatDistanceToNow(new Date(myProjects[i].date), {addSuffix:true})}`;
+                projDueDate.textContent = formatDate};
             rightsideProj.appendChild(projDueDate);
             // create the cancel project button
             const cancelProj = document.createElement("button");
@@ -175,7 +180,9 @@ export function displayGeneral(){
         // create the project due date element
         const projDueDate = document.createElement("div");
         projDueDate.id = "projDueDate";
-        projDueDate.textContent = myProjects[i].date;
+        if(myProjects[i].date){
+            const formatDate= `Due ${formatDistanceToNow(new Date(myProjects[i].date), {addSuffix:true})}`;
+            projDueDate.textContent = formatDate;}
         rightsideProj.appendChild(projDueDate);
         // create the cancel project button
         const cancelProj = document.createElement("button");
@@ -225,7 +232,9 @@ function showDetails(x){
         modalDetails.style.zIndex = "1";
         title.innerText= myProjects[targetToDo].title;  //innerhtml?
         folder.innerText= myProjects[targetToDo].folder;
-        date.innerText= myProjects[targetToDo].date;
+        if(myProjects[targetToDo].date){ 
+            const formatDate= format(new Date(myProjects[targetToDo].date), 'MMMM dd, yyyy');
+            date.innerText= formatDate;}
         details.innerText= myProjects[targetToDo].description;
         if(myProjects[targetToDo].priority===true){priority.innerText='High'}
         if(myProjects[targetToDo].priority===false){priority.innerText='Low'}
